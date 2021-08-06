@@ -4,22 +4,24 @@ import { Message } from "./components/Message/Message"
 import { SendForm } from "./components/SendForm/SendForm"
 import "./styles/app.scss"
 
+const botMessage = {
+  author: "bot",
+  text: "Welcome! How are you feeling",
+}
+
+const timeOut = 1500
+
 export function App() {
   const [messages, setMessages] = useState([])
 
   const [value, setValue] = useState("")
 
   const handleSendMessage = () => {
-    setMessages((state) => [...state, { value, author: "me" }])
-    setValue("")
+    if (value !== "") {
+      setMessages((state) => [...state, { value, author: "me" }])
+      setValue("")
+    }
   }
-
-  const botMessage = {
-    author: "bot",
-    text: "Welcome! How are you feeling",
-  }
-
-  const timeOut = 1500
 
   useEffect(() => {
     const lastMessage = messages[messages.length - 1]
@@ -32,7 +34,7 @@ export function App() {
         ])
       }, timeOut)
     }
-  }, [botMessage.author, botMessage.text, messages])
+  }, [messages])
 
   return (
     <div>
