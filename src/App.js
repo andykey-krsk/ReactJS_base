@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { Header } from "./components/Header/Header"
 import { Message } from "./components/Message/Message"
+import { SendForm } from "./components/SendForm/SendForm"
 import "./styles/app.scss"
 
 export function App() {
@@ -43,14 +44,11 @@ export function App() {
           </li>
         ))}
       </ul>
-      <input
-        className="input-message"
+      <SendForm
         value={value}
         onChange={(e) => setValue(e.target.value)}
+        onClick={handleSendMessage}
       />
-      <button className="send" onClick={handleSendMessage}>
-        Отправить
-      </button>
     </div>
   )
 }

@@ -1,7 +1,14 @@
-// export function SendForm() {
-//   return
-//      <div>
-//          <input value={value} onChange={(e) => setValue(e.target.value)} />
-//          <button onClick={handleSendMessage}>Отправить</button>
-//      </div>
-// }
+export function SendForm(props) {
+  return (
+    <div>
+      <input
+        className="input-message"
+        value={props.value}
+        onChange={props.onChange}
+      />
+      <button className="send" onClick={props.onClick}>
+        Отправить
+      </button>
+    </div>
+  )
+}
