@@ -1,3 +1,5 @@
+import "./Header.scss"
+
 export function Header() {
-  return <header className="App-header"> Чат </header>
+  return <div className="header"> Чат </div>
 }
