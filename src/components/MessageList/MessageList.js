@@ -22,6 +22,13 @@ export function MessageList() {
     }
   }
 
+  const handlePressInput = ({ code }) => {
+    if (code === "Enter" && value) {
+      setMessages((state) => [...state, { value, author: "me" }])
+      setValue("")
+    }
+  }
+
   useEffect(() => {
     const lastMessage = messages[messages.length - 1]
 
@@ -36,21 +43,18 @@ export function MessageList() {
   }, [messages])
 
   return (
-    <div className="message-list">
-      <div>
-        <ul>
-          {messages.map((message, id) => (
-            <li key={id}>
-              <Message messages={message.value} author={message.author} />
-            </li>
-          ))}
-        </ul>
+    <div className="message-container">
+      <div className="message-list">
+        {messages.map((message, id) => (
+          <Message messages={message.value} author={message.author} key={id} />
+        ))}
       </div>
       <div>
         <SendForm
           value={value}
           onChange={(e) => setValue(e.target.value)}
           onClick={handleSendMessage}
+          onKeyPress={handlePressInput}
         />
       </div>
     </div>

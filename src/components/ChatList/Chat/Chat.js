@@ -23,17 +23,23 @@ export function Chat(props) {
       >
         <ListItemAvatar>
           <Avatar alt={props.name} src={props.photo} />
-          <Typography variant="button">{props.date}</Typography>
         </ListItemAvatar>
         <ListItemText primary={props.name} secondary={props.description} />
-        <Badge
-          badgeContent={props.unread}
-          max="99"
-          {...{
-            color: "secondary",
-            children: <MailIcon />,
-          }}
-        />
+        <div className="chat-col">
+          <div>
+            <Badge
+              badgeContent={props.unread}
+              max={99}
+              {...{
+                color: "secondary",
+                children: <MailIcon />,
+              }}
+            />
+          </div>
+          <div>
+            <Typography variant="button">{props.date}</Typography>
+          </div>
+        </div>
       </ListItem>
     </>
   )

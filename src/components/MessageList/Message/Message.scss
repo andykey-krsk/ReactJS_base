@@ -1,6 +1,6 @@
 .message {
   color: #1100ff;
-  width: 100%;
+  width: 80%;
   background-color: #cccccc;
   border-radius: 10px;
   margin-bottom: 10px;
@@ -13,4 +13,8 @@
 .text span {
   font-weight: bold;
   color: red;
+}
+
+.right {
+  margin-left: auto;
 }

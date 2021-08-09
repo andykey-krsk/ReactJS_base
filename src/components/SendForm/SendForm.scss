@@ -1,5 +1,7 @@
 .input-message {
   width: 100%;
+  padding: 5px;
+  background-color: lightgray;
 }
 
 .send {
@@ -9,12 +11,11 @@
   background-color: #3f51b5;
   font-weight: 700;
   color: #fff;
-  margin-left: 20px;
+  margin-left: 10px;
 }
 
 .send-form {
   display: flex;
-  //position: absolute;
-  //bottom: 40px;
+  bottom: 40px;
   width: 100%;
 }

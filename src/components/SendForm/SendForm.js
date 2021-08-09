@@ -1,4 +1,4 @@
-import TextField from "@material-ui/core/TextField"
+import { Input, InputAdornment } from "@material-ui/core"
 import SendIcon from "@material-ui/icons/Send"
 
 import "./SendForm.scss"
@@ -6,21 +6,20 @@ import "./SendForm.scss"
 export function SendForm(props) {
   return (
     <div className="send-form">
-      <TextField
+      <Input
         className="input-message"
-        id="outlined-multiline-static"
-        label="Message"
-        multiline={true}
-        rows={2}
-        defaultValue="Многострочное сообщение"
-        variant="outlined"
         value={props.value}
         onChange={props.onChange}
+        onKeyPress={props.onKeyPress}
+        fullWidth={true}
+        placeholder="Введите сообщение..."
         autoFocus={true}
+        endAdornment={
+          <InputAdornment position="end">
+            {props.value && <SendIcon onClick={props.onClick} className="" />}
+          </InputAdornment>
+        }
       />
-      <button className="send" onClick={props.onClick}>
-        <SendIcon />
-      </button>
     </div>
   )
 }
