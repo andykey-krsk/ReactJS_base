@@ -28,13 +28,13 @@ export function ChatList() {
       <List component="nav">
         {chats.map((chat) => (
           <Chat
-            key={chat.name}
             name={chat.name}
             photo={chat.photo}
             description={chat.description}
-            selected={selected === chat.id}
             date={chat.date}
             unread={chat.unread}
+            key={chat.name}
+            selected={selected === chat.id}
             handleListItemClick={() => setSelected(chat.id)}
           />
         ))}
