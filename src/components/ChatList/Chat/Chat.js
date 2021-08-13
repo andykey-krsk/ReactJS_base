@@ -29,7 +29,7 @@ export function Chat({
         </ListItemAvatar>
         <ListItemText
           primary={title}
-          secondary={`${lastMessage.author}: ${lastMessage.message}`}
+          secondary={`${lastMessage?.author}: ${lastMessage?.message}`}
         />
         <div className="chat-col">
           <div>

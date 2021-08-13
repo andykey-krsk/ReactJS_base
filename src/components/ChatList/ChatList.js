@@ -24,8 +24,6 @@ export function ChatList({ conversations, allMessages }) {
       <List component="nav">
         {conversations.map((chat, index) => {
           const curentMessages = allMessages[chat.title]
-
-          //console.log(curentMessages)
           return (
             <Link key={index} to={`/chat/${chat.title}`}>
               <Chat

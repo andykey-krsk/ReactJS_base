@@ -19,8 +19,8 @@ export function MessageProvider({ children }) {
   ])
 
   const [messages, setMessages] = useState({
-    room1: [{ message: "Привет, room1!", author: "me", date: new Date() }],
-    room2: [{ message: "Привет, room2!", author: "me", date: new Date() }],
+    room1: [],
+    room2: [],
   })
 
   const updateConversations = useCallback(
@@ -74,6 +74,7 @@ export function MessageProvider({ children }) {
 
   useEffect(() => {
     let timerId = null
+    //console.log(messages[roomId])
     const lastMessage = messages[roomId][messages[roomId].length - 1]
 
     if (lastMessage?.author === "me") {
