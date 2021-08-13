@@ -1,0 +1,21 @@
+.input-message {
+  width: 100%;
+  padding: 5px;
+  background-color: lightgray;
+}
+
+.send {
+  height: 75px;
+  width: 75px;
+  border: 0;
+  background-color: #3f51b5;
+  font-weight: 700;
+  color: #fff;
+  margin-left: 10px;
+}
+
+.send-form {
+  display: flex;
+  bottom: 40px;
+  width: 100%;
+}

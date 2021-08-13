@@ -1,12 +1,27 @@
+import { ThemeProvider, createTheme } from "@material-ui/core"
 import React from "react"
 import ReactDOM from "react-dom"
-import { App } from "./App"
+import { Layout, Header, ChatList, MessageList } from "./components"
+import "./styles/app.scss"
+
+const theme = createTheme({
+  dark: {
+    color: "$dark",
+  },
+  light: {
+    color: "$light",
+  },
+})
 
 ReactDOM.render(
   <React.StrictMode>
-    <div className="App">
-      <App />
-    </div>
+    <ThemeProvider theme={theme}>
+      <Layout
+        header={<Header />}
+        chatList={<ChatList />}
+        messageList={<MessageList />}
+      />
+    </ThemeProvider>
   </React.StrictMode>,
 
   document.getElementById("root")

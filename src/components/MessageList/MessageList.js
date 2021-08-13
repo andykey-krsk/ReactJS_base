@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react"
-import { Header } from "./components/Header/Header"
-import { Message } from "./components/Message/Message"
-import { SendForm } from "./components/SendForm/SendForm"
-import "./styles/app.scss"
+import { SendForm } from ".././SendForm/SendForm"
+import { Message } from "./Message/Message"
+import "./MessageList.scss"
 
 const botMessage = {
   author: "bot",
@@ -11,13 +10,20 @@ const botMessage = {
 
 const timeOut = 1500
 
-export function App() {
+export function MessageList() {
   const [messages, setMessages] = useState([])
 
   const [value, setValue] = useState("")
 
   const handleSendMessage = () => {
     if (value !== "") {
+      setMessages((state) => [...state, { value, author: "me" }])
+      setValue("")
+    }
+  }
+
+  const handlePressInput = ({ code }) => {
+    if (code === "Enter" && value) {
       setMessages((state) => [...state, { value, author: "me" }])
       setValue("")
     }
@@ -37,20 +43,20 @@ export function App() {
   }, [messages])
 
   return (
-    <div>
-      <Header />
-      <ul>
+    <div className="message-container">
+      <div className="message-list">
         {messages.map((message, id) => (
-          <li key={id}>
-            <Message messages={message.value} author={message.author} />
-          </li>
+          <Message messages={message.value} author={message.author} key={id} />
         ))}
-      </ul>
-      <SendForm
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-        onClick={handleSendMessage}
-      />
+      </div>
+      <div>
+        <SendForm
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          onClick={handleSendMessage}
+          onKeyPress={handlePressInput}
+        />
+      </div>
     </div>
   )
 }
