@@ -25,6 +25,7 @@ export function ChatList({ conversations, allMessages }) {
         {conversations.map((chat, index) => {
           const curentMessages = allMessages[chat.title]
 
+          //console.log(curentMessages)
           return (
             <Link key={index} to={`/chat/${chat.title}`}>
               <Chat

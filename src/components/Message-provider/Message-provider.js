@@ -6,9 +6,16 @@ const timeOut = 1500
 export function MessageProvider({ children }) {
   const { roomId } = useParams()
 
+  const botMessage = useMemo(() => {
+    return {
+      message: `Welcome! How are you feeling - ${roomId}`,
+      author: "Bot",
+    }
+  }, [roomId])
+
   const [conversations, setConversations] = useState([
-    { title: "room1", value: "test 1" },
-    { title: "room2", value: "test 2" },
+    { title: "room1", value: "" },
+    { title: "room2", value: "" },
   ])
 
   const [messages, setMessages] = useState({
@@ -69,21 +76,12 @@ export function MessageProvider({ children }) {
     let timerId = null
     const lastMessage = messages[roomId][messages[roomId].length - 1]
 
-    //console.log(lastMessage)
-
     if (lastMessage?.author === "me") {
-      timerId = setTimeout(
-        () =>
-          actions.sendMessage({
-            message: `Welcome! How are you feeling - ${roomId}`,
-            author: "Bot",
-          }),
-        timeOut
-      )
+      timerId = setTimeout(() => actions.sendMessage(botMessage), timeOut)
     }
 
     return () => clearInterval(timerId)
-  }, [messages, roomId, actions])
+  }, [messages, botMessage, roomId, actions])
 
   return children([state, actions])
 }

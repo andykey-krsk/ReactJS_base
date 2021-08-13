@@ -7,11 +7,6 @@ import ListItemText from "@material-ui/core/ListItemText"
 import Typography from "@material-ui/core/Typography"
 import MailIcon from "@material-ui/icons/Mail"
 
-// const defaultProps = {
-//   color: "secondary",
-//   children: <MailIcon />,
-// }
-
 export function Chat({
   title,
   selected,
