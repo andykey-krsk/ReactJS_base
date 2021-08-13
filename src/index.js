@@ -1,7 +1,9 @@
 import { ThemeProvider, createTheme } from "@material-ui/core"
 import React from "react"
 import ReactDOM from "react-dom"
-import { Layout, Header, ChatList, MessageList } from "./components"
+import { BrowserRouter, Switch, Route } from "react-router-dom"
+import { Home, Profile } from "./components"
+import { Chat } from "./pages"
 import "./styles/app.scss"
 
 const theme = createTheme({
@@ -15,13 +17,16 @@ const theme = createTheme({
 
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <Layout
-        header={<Header />}
-        chatList={<ChatList />}
-        messageList={<MessageList />}
-      />
-    </ThemeProvider>
+    <BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <Switch>
+          <Route path="/" exact={true} component={() => <Home />} />
+          <Route path="/profile" component={() => <Profile />} />
+          <Route path="/chat" component={() => <Chat />} />
+          <Route path="*" component={() => <h1>404</h1>} />
+        </Switch>
+      </ThemeProvider>
+    </BrowserRouter>
   </React.StrictMode>,
 
   document.getElementById("root")

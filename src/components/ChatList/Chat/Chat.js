@@ -12,23 +12,34 @@ import MailIcon from "@material-ui/icons/Mail"
 //   children: <MailIcon />,
 // }
 
-export function Chat(props) {
+export function Chat({
+  title,
+  selected,
+  photo,
+  unread,
+  date,
+  handleListItemClick,
+  lastMessage,
+}) {
   return (
     <>
       <ListItem
         button={true}
         divider={true}
-        selected={props.selected}
-        onClick={props.handleListItemClick}
+        selected={selected}
+        onClick={handleListItemClick}
       >
         <ListItemAvatar>
-          <Avatar alt={props.name} src={props.photo} />
+          <Avatar alt={title} src={photo} />
         </ListItemAvatar>
-        <ListItemText primary={props.name} secondary={props.description} />
+        <ListItemText
+          primary={title}
+          secondary={`${lastMessage.author}: ${lastMessage.message}`}
+        />
         <div className="chat-col">
           <div>
             <Badge
-              badgeContent={props.unread}
+              badgeContent={unread}
               max={99}
               {...{
                 color: "secondary",
@@ -37,7 +48,7 @@ export function Chat(props) {
             />
           </div>
           <div>
-            <Typography variant="button">{props.date}</Typography>
+            <Typography variant="button">{date}</Typography>
           </div>
         </div>
       </ListItem>

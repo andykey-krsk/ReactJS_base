@@ -4,6 +4,7 @@ import SendIcon from "@material-ui/icons/Send"
 import "./SendForm.scss"
 
 export function SendForm(props) {
+  console.log(props)
   return (
     <div className="send-form">
       <Input
@@ -16,7 +17,9 @@ export function SendForm(props) {
         autoFocus={true}
         endAdornment={
           <InputAdornment position="end">
-            {props.value && <SendIcon onClick={props.onClick} className="" />}
+            {props.value && (
+              <SendIcon onClick={props.onClick} className="send" />
+            )}
           </InputAdornment>
         }
       />
