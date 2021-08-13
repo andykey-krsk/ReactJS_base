@@ -69,8 +69,8 @@ export function MessageProvider({ children }) {
     let timerId = null
     const lastMessage = messages[roomId][messages[roomId].length - 1]
 
-    console.log(lastMessage)
-    
+    //console.log(lastMessage)
+
     if (lastMessage?.author === "me") {
       timerId = setTimeout(
         () =>

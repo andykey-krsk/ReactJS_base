@@ -4,7 +4,6 @@ import SendIcon from "@material-ui/icons/Send"
 import "./SendForm.scss"
 
 export function SendForm(props) {
-  console.log(props)
   return (
     <div className="send-form">
       <Input

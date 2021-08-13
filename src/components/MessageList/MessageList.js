@@ -3,13 +3,6 @@ import { SendForm } from ".././SendForm/SendForm"
 import { Message } from "./Message/Message"
 import "./MessageList.scss"
 
-// const botMessage = {
-//   author: "bot",
-//   text: "Welcome! How are you feeling",
-// }
-
-// const timeOut = 1500
-
 export const MessageList = ({
   messages,
   value,
