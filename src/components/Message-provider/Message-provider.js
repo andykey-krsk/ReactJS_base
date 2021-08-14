@@ -16,11 +16,15 @@ export function MessageProvider({ children }) {
   const [conversations, setConversations] = useState([
     { title: "room1", value: "" },
     { title: "room2", value: "" },
+    { title: "room3", value: "" },
+    { title: "room4", value: "" },
   ])
 
   const [messages, setMessages] = useState({
     room1: [],
     room2: [],
+    room3: [],
+    room4: [],
   })
 
   const updateConversations = useCallback(
@@ -74,11 +78,13 @@ export function MessageProvider({ children }) {
 
   useEffect(() => {
     let timerId = null
-    //console.log(messages[roomId])
-    const lastMessage = messages[roomId][messages[roomId].length - 1]
+    //можно ли так делать? или есть какое то более правильное решение
+    if (roomId) {
+      const lastMessage = messages[roomId][messages[roomId].length - 1]
 
-    if (lastMessage?.author === "me") {
-      timerId = setTimeout(() => actions.sendMessage(botMessage), timeOut)
+      if (lastMessage?.author === "me") {
+        timerId = setTimeout(() => actions.sendMessage(botMessage), timeOut)
+      }
     }
 
     return () => clearInterval(timerId)

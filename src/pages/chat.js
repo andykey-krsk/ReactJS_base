@@ -36,7 +36,7 @@ export function Chat() {
               </Route>
               <Route exact={true} path="/chat">
                 <div className="center">
-                  <h2 className="h1">Выберите сообщение </h2>
+                  <h2 className="h1">Выберите чат </h2>
                 </div>
               </Route>
             </LayoutChat>
