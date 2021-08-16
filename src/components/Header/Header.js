@@ -24,7 +24,7 @@ function HomeIcon(props) {
 export function Header() {
   const classes = useStyles()
 
-  const { theme, changeTheme } = useContext(ThemeContext)
+  const { theme } = useContext(ThemeContext)
 
   return (
     <>
@@ -38,8 +38,8 @@ export function Header() {
         <div className="header" style={{ color: theme.theme.color }}>
           Чат
         </div>
-        <button onClick={() => changeTheme("light")}>light</button>
-        <button onClick={() => changeTheme("dark")}>dark</button>
+        {/* <button onClick={() => changeTheme("light")}>light</button>
+        <button onClick={() => changeTheme("dark")}>dark</button> */}
       </div>
     </>
   )
