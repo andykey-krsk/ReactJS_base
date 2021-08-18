@@ -1,6 +1,8 @@
 import { makeStyles } from "@material-ui/core/styles"
 import SvgIcon from "@material-ui/core/SvgIcon"
+import { useContext } from "react"
 import { Link } from "react-router-dom"
+import { ThemeContext } from "../ThemeContext"
 import "./Header.scss"
 
 const useStyles = makeStyles((theme) => ({
@@ -21,6 +23,9 @@ function HomeIcon(props) {
 
 export function Header() {
   const classes = useStyles()
+
+  const { theme } = useContext(ThemeContext)
+
   return (
     <>
       <div className="header-row">
@@ -30,7 +35,11 @@ export function Header() {
           </div>
         </Link>
 
-        <div className="header"> Чат </div>
+        <div className="header" style={{ color: theme.theme.color }}>
+          Чат
+        </div>
+        {/* <button onClick={() => changeTheme("light")}>light</button>
+        <button onClick={() => changeTheme("dark")}>dark</button> */}
       </div>
     </>
   )
