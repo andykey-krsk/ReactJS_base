@@ -1,19 +1,20 @@
 import "./Message.scss"
 
-export function Message(props) {
+export function Message({ author, message, date }) {
   const messageClass = () => {
-    if (props.author === "me") {
+    if (author === "me") {
       return "message right"
     } else {
       return "message"
     }
   }
+
   return (
     <div className={messageClass()}>
       <div className="text">
-        <span>{props.author}: </span>
-        <p>{props.messages}</p>
-        <p>00:00</p>
+        <span>{author}: </span>
+        <p>{message}</p>
+        <p className="time">{date.toLocaleTimeString().slice(0, -3)}</p>
       </div>
     </div>
   )

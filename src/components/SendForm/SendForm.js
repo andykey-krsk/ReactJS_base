@@ -16,7 +16,9 @@ export function SendForm(props) {
         autoFocus={true}
         endAdornment={
           <InputAdornment position="end">
-            {props.value && <SendIcon onClick={props.onClick} className="" />}
+            {props.value && (
+              <SendIcon onClick={props.onClick} className="send" />
+            )}
           </InputAdornment>
         }
       />
