@@ -1,11 +1,13 @@
-import Avatar from "@material-ui/core/Avatar"
-import Badge from "@material-ui/core/Badge"
-//import Grid from "@material-ui/core/Grid"
-import ListItem from "@material-ui/core/ListItem"
-import ListItemAvatar from "@material-ui/core/ListItemAvatar"
-import ListItemText from "@material-ui/core/ListItemText"
-import Typography from "@material-ui/core/Typography"
+import {
+  Avatar,
+  Badge,
+  ListItem,
+  ListItemAvatar,
+  ListItemText,
+  Typography,
+} from "@material-ui/core"
 import MailIcon from "@material-ui/icons/Mail"
+import { useSelector } from "react-redux"
 
 export function Chat({
   title,
@@ -14,8 +16,11 @@ export function Chat({
   unread,
   date,
   handleListItemClick,
-  lastMessage,
 }) {
+  const messages = useSelector((state) => state.messages.messages[title])
+
+  const lastMessage = messages[messages.length - 1]
+
   return (
     <>
       <ListItem
@@ -29,7 +34,11 @@ export function Chat({
         </ListItemAvatar>
         <ListItemText
           primary={title}
-          secondary={`${lastMessage?.author}: ${lastMessage?.message}`}
+          secondary={
+            (lastMessage &&
+              `${lastMessage?.author}: ${lastMessage?.message}`) ||
+            "-"
+          }
         />
         <div className="chat-col">
           <div>
