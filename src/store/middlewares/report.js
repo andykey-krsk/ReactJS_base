@@ -1,5 +1,5 @@
 export const report = () => (next) => (action) => {
-  console.lor("report")
+  console.log("report")
   try {
     return next(action)
   } catch (e) {
