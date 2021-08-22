@@ -1,6 +1,6 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux"
 import { persistStore, persistReducer } from "redux-persist"
-import { storage } from "redux-persist/lib/storage"
+import storage from "redux-persist/lib/storage"
 import thunk from "redux-thunk"
 import { conversationsReducer } from "./conversations"
 import { messagesReducer } from "./messages"
