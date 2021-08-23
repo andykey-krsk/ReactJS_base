@@ -20,6 +20,7 @@ const menu = [
   { to: "/", name: "Главная" },
   { to: "/chat", name: "Чаты" },
   { to: "/profile", name: "Профиль" },
+  { to: "/gists", name: "GIST" },
 ]
 
 export function Menu() {

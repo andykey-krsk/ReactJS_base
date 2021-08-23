@@ -3,6 +3,7 @@ import { persistStore, persistReducer } from "redux-persist"
 import storage from "redux-persist/lib/storage"
 import thunk from "redux-thunk"
 import { conversationsReducer } from "./conversations"
+import { gistsReducer } from "./gists"
 import { messagesReducer } from "./messages"
 import { logger, botSendMessage, report, timeoutScheduler } from "./middlewares"
 import { profileReducer } from "./profile"
@@ -20,6 +21,7 @@ const persistreducer = persistReducer(
     profile: profileReducer,
     conversations: conversationsReducer,
     messages: messagesReducer,
+    gists: gistsReducer,
   })
 )
 
