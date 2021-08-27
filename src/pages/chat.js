@@ -1,12 +1,6 @@
 import { useEffect } from "react"
 import { Switch, Route, useHistory } from "react-router-dom"
-import {
-  MessageProvider,
-  LayoutChat,
-  Header,
-  ChatList,
-  MessageList,
-} from "../components"
+import { LayoutChat, Header, ChatList, MessageList } from "../components"
 
 export function Chat() {
   const { push } = useHistory()
@@ -28,20 +22,16 @@ export function Chat() {
   return (
     <Switch>
       <Route path={["/chat/:roomId", "/chat"]}>
-        <MessageProvider>
-          {([state, actions]) => (
-            <LayoutChat header={<Header />} chatList={<ChatList {...state} />}>
-              <Route path="/chat/:roomId">
-                <MessageList {...state} {...actions} />
-              </Route>
-              <Route exact={true} path="/chat">
-                <div className="center">
-                  <h2 className="h1">Выберите чат </h2>
-                </div>
-              </Route>
-            </LayoutChat>
-          )}
-        </MessageProvider>
+        <LayoutChat header={<Header />} chatList={<ChatList />}>
+          <Route path="/chat/:roomId">
+            <MessageList />
+          </Route>
+          <Route exact={true} path="/chat">
+            <div className="center">
+              <h2 className="h1">Выберите чат </h2>
+            </div>
+          </Route>
+        </LayoutChat>
       </Route>
       <Route path="*">
         <div className="center">
