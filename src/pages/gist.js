@@ -41,8 +41,10 @@ export function Gist() {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(getGists())
-  }, [dispatch])
+    if (gists.length) {
+      dispatch(getGists())
+    }
+  }, [dispatch, gists])
 
   if (gistsPending) {
     return <h1>Загразка...</h1>
@@ -59,16 +61,11 @@ export function Gist() {
           button {index}
         </button>
       ))}
-      <hr />
-      {gistsPending ? (
-        <h1>pending...</h1>
-      ) : (
-        <ul>
-          {gists.map((gist, index) => (
-            <li key={index}>{gist.description}</li>
-          ))}
-        </ul>
-      )}
+      <ul>
+        {gists?.map((gist, index) => (
+          <li key={index}>{gist.description}</li>
+        ))}
+      </ul>
     </div>
   )
 }
