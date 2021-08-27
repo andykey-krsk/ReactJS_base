@@ -3,9 +3,9 @@ import { useSelector, useDispatch } from "react-redux"
 import { useParams } from "react-router-dom"
 import {
   hamdleChangeMessageValue,
-  clearMessageValue,
+
 } from "../.././store/conversations"
-import { sendMessage } from "../.././store/messages"
+import { sendMessageWithThunk } from "../.././store/messages"
 import { SendForm } from ".././SendForm/SendForm"
 import { Message } from "./Message/Message"
 
@@ -26,8 +26,8 @@ export const MessageList = () => {
 
   const handleSendMessage = () => {
     if (value) {
-      dispatch(sendMessage({ author: "me", message: value }, roomId))
-      dispatch(clearMessageValue(roomId))
+      dispatch(sendMessageWithThunk({ author: "me", message: value }, roomId))
+    
     }
   }
 
