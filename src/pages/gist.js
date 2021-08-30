@@ -1,5 +1,5 @@
 import debounce from "lodash.debounce"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useMemo } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { getGists, searchGistsByUserName } from "../store/gists"
 
@@ -33,6 +33,10 @@ import { getGists, searchGistsByUserName } from "../store/gists"
 //   return { gists, penging, error, getGists }
 // }
 
+const searchGistDebounced = debounce((query, dispatch) => {
+  dispatch(searchGistsByUserName(query))
+}, 500)
+
 export function Gist() {
   // const { gists, penging, error, getGists } = useGists()
   const { gistsPending, gists, gistsError } = useSelector(
@@ -51,9 +55,7 @@ export function Gist() {
 
   useEffect(() => {
     if (search) {
-      //не понял как применить debounce
-      // debounce(() => dispatch(searchGistsByUserName(search)), 500)
-      dispatch(searchGistsByUserName(search))
+      searchGistDebounced(search, dispatch)
     }
   }, [search, dispatch])
 
