@@ -1,17 +1,34 @@
-import { gistsStart, gistsSuccess, gistsError } from "./actions"
+import {
+  gistsStart,
+  gistsSuccess,
+  gistsError,
+  searchGistsStart,
+  searchGistsSuccess,
+  searchGistsError,
+} from "./actions"
 
-const API_URL_PUBLIC = (page) =>
-  `https://api.github.com/gists/public?page=${page}`
-
-export const getGists =
-  (page = 1) =>
-  async (dispatch) => {
+export const getGists = (page = 1) => {
+  return async (dispatch, _, api) => {
     try {
       dispatch(gistsStart())
-      const response = await fetch(API_URL_PUBLIC(page))
-      const result = await response.json()
-      dispatch(gistsSuccess(result))
+      const { data } = await api.getGistsApi(page)
+
+      dispatch(gistsSuccess(data))
     } catch (e) {
       dispatch(gistsError(e))
     }
   }
+}
+
+export const searchGistsByUserName = (name) => {
+  return async (dispatch, _, api) => {
+    try {
+      dispatch(searchGistsStart())
+      const { data } = await api.searchGistsByUserNameApi(name)
+
+      dispatch(searchGistsSuccess(data))
+    } catch (e) {
+      dispatch(searchGistsError(e))
+    }
+  }
+}
