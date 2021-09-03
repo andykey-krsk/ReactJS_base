@@ -1,11 +1,8 @@
 import { useRef } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { useParams } from "react-router-dom"
-import {
-  hamdleChangeMessageValue,
-
-} from "../.././store/conversations"
-import { sendMessageWithThunk } from "../.././store/messages"
+import { handleChangeMessageValueFB } from "../../store/conversations"
+import { sendMessageWithThunk, editMessageThunk } from "../../store/messages"
 import { SendForm } from ".././SendForm/SendForm"
 import { Message } from "./Message/Message"
 
@@ -16,7 +13,14 @@ export const MessageList = () => {
   const { roomId } = useParams()
   const dispatch = useDispatch()
 
-  const messages = useSelector((state) => state.messages.messages[roomId] || [])
+  const messages = useSelector((state) => {
+    return state.messages.messages[roomId] || []
+  })
+
+  const updateMessageId = useSelector((state) => {
+    return state.conversations.updateMessageId
+  })
+
   const value = useSelector(
     (state) =>
       state.conversations.conversations.find(
@@ -26,8 +30,12 @@ export const MessageList = () => {
 
   const handleSendMessage = () => {
     if (value) {
-      dispatch(sendMessageWithThunk({ author: "me", message: value }, roomId))
-    
+      if (updateMessageId) {
+        dispatch(editMessageThunk(value, roomId, updateMessageId))
+        return
+      }
+
+      dispatch(sendMessageWithThunk({ author: "User", message: value }, roomId))
     }
   }
 
@@ -48,7 +56,7 @@ export const MessageList = () => {
         <SendForm
           value={value}
           onChange={(e) =>
-            dispatch(hamdleChangeMessageValue(e.target.value, roomId))
+            dispatch(handleChangeMessageValueFB(e.target.value, roomId))
           }
           onClick={handleSendMessage}
           onKeyPress={handlePressInput}

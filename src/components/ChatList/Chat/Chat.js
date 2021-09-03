@@ -4,20 +4,16 @@ import {
   ListItem,
   ListItemAvatar,
   ListItemText,
-  Typography,
 } from "@material-ui/core"
+import { ControlCameraOutlined } from "@material-ui/icons"
 import MailIcon from "@material-ui/icons/Mail"
+import { memo } from "react"
 import { useSelector } from "react-redux"
 
-export function Chat({
-  title,
-  selected,
-  photo,
-  unread,
-  date,
-  handleListItemClick,
-}) {
-  const messages = useSelector((state) => state.messages.messages[title])
+function ChatView({ title, selected, handleListItemClick }) {
+  const messages = useSelector((state) => {
+    return state.messages.messages[title] || []
+  })
 
   const lastMessage = messages[messages.length - 1]
 
@@ -30,7 +26,7 @@ export function Chat({
         onClick={handleListItemClick}
       >
         <ListItemAvatar>
-          <Avatar alt={title} src={photo} />
+          <Avatar alt={title} />
         </ListItemAvatar>
         <ListItemText
           primary={title}
@@ -43,7 +39,6 @@ export function Chat({
         <div className="chat-col">
           <div>
             <Badge
-              badgeContent={unread}
               max={99}
               {...{
                 color: "secondary",
@@ -51,11 +46,10 @@ export function Chat({
               }}
             />
           </div>
-          <div>
-            <Typography variant="button">{date}</Typography>
-          </div>
         </div>
       </ListItem>
     </>
   )
 }
+
+export const Chat = memo(ChatView)

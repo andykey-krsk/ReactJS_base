@@ -1,6 +1,9 @@
 import { useEffect } from "react"
+import { useDispatch } from "react-redux"
 import { Switch, Route, useHistory } from "react-router-dom"
-import { LayoutChat, Header, ChatList, MessageList } from "../components"
+import { LayoutChat, ChatList, MessageList } from "../components"
+import { getConversationsFB } from "../store/conversations"
+import { getMessagesFB } from "../store/messages"
 
 export function Chat() {
   const { push } = useHistory()
@@ -19,10 +22,17 @@ export function Chat() {
     }
   }, [push])
 
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getConversationsFB())
+    dispatch(getMessagesFB())
+  }, [dispatch])
+
   return (
     <Switch>
       <Route path={["/chat/:roomId", "/chat"]}>
-        <LayoutChat header={<Header />} chatList={<ChatList />}>
+        <LayoutChat chatList={<ChatList />}>
           <Route path="/chat/:roomId">
             <MessageList />
           </Route>

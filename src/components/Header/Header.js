@@ -1,7 +1,10 @@
+import { Grid, Switch } from "@material-ui/core"
 import { makeStyles } from "@material-ui/core/styles"
 import SvgIcon from "@material-ui/core/SvgIcon"
 import { useContext } from "react"
 import { Link } from "react-router-dom"
+import { firebaseApp } from "../../api/firebase"
+import { Menu } from ".././Menu"
 import { ThemeContext } from "../ThemeContext"
 import "./Header.scss"
 
@@ -21,7 +24,11 @@ function HomeIcon(props) {
   )
 }
 
-export function Header() {
+const signOut = () => {
+  firebaseApp.auth().signOut()
+}
+
+export function Header({ session }) {
   const classes = useStyles()
 
   const { theme } = useContext(ThemeContext)
@@ -36,10 +43,17 @@ export function Header() {
         </Link>
 
         <div className="header" style={{ color: theme.theme.color }}>
-          Чат
+          <Menu />
         </div>
-        {/* <button onClick={() => changeTheme("light")}>light</button>
-        <button onClick={() => changeTheme("dark")}>dark</button> */}
+        {session?.email && (
+          <Grid
+            style={{ color: theme.theme.color, cursor: "pointer" }}
+            item={true}
+            onClick={signOut}
+          >
+            Выход ({session.email})
+          </Grid>
+        )}
       </div>
     </>
   )
