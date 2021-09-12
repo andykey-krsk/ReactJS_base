@@ -6,9 +6,14 @@ import { GET_MESSAGES } from "./types"
 export const sendMessageWithThunk =
   (message, roomId) =>
   async (dispatch, _, { sendMessageApi }) => {
-    await sendMessageApi(message, roomId)
-    dispatch(sendMessage(message, roomId))
-    dispatch(clearMessageValue(roomId))
+    try {
+      await sendMessageApi(roomId, message)
+
+      dispatch(sendMessage(message, roomId))
+      dispatch(clearMessageValue(roomId))
+    } catch (e) {
+      console.log("error", e)
+    }
   }
 
 export const editMessageThunk =
@@ -20,13 +25,15 @@ export const editMessageThunk =
 
 export const getMessagesFB =
   () =>
-  (dispatch, _, { getMessaagesApi }) => {
-    getMessaagesApi().then((snapshot) => {
+  (dispatch, _, { getMessagesApi }) => {
+    getMessagesApi().then((snapshot) => {
       const messages = {}
 
       snapshot.forEach((snap) => {
         messages[snap.key] = Object.values(snap.val())
       })
+
+      console.log("messages", messages)
 
       dispatch({ type: GET_MESSAGES, payload: messages })
     })

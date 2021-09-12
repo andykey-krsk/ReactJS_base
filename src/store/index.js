@@ -4,7 +4,7 @@ import storage from "redux-persist/lib/storage"
 import thunk from "redux-thunk"
 import { updateConversation, getConversationsApi } from "../api/conversations"
 import { getGistsApi, searchGistsByUserNameApi } from "../api/gists"
-import { sendMessageApi, getMessaagesApi } from "../api/messages"
+import { sendMessageApi, getMessagesApi } from "../api/messages"
 import { conversationsReducer } from "./conversations"
 import { gistsReducer } from "./gists"
 import { messagesReducer } from "./messages"
@@ -37,7 +37,7 @@ export const store = createStore(
         getGistsApi,
         searchGistsByUserNameApi,
         sendMessageApi,
-        getMessaagesApi,
+        getMessagesApi,
         updateConversation,
         getConversationsApi,
       }),
