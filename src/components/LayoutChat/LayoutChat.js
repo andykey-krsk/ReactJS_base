@@ -1,10 +1,9 @@
 import "./LayoutChat.scss"
 
-export function LayoutChat({ header, chatList, children }) {
+export function LayoutChat({ chatList, children }) {
   return (
     <div className="container">
       <div className="layout">
-        {header}
         <div className="row">
           {chatList}
           {children}

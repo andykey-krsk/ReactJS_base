@@ -1,47 +1,22 @@
-import Avatar from "@material-ui/core/Avatar"
-import List from "@material-ui/core/List"
-import ListItem from "@material-ui/core/ListItem"
-import ListItemAvatar from "@material-ui/core/ListItemAvatar"
-import ListItemText from "@material-ui/core/ListItemText"
-import { makeStyles } from "@material-ui/core/styles"
-import WorkIcon from "@material-ui/icons/Work"
 import { Link } from "react-router-dom"
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: "50%",
-    maxWidth: 360,
-    marginLeft: "auto",
-    marginRight: "auto",
-  },
-}))
+import styles from "./menu.module.css"
 
 const menu = [
-  { to: "/", name: "Главная" },
-  { to: "/chat", name: "Чаты" },
+  { to: "/chat", name: "Чат" },
   { to: "/profile", name: "Профиль" },
   { to: "/gists", name: "GIST" },
+  { to: "/login", name: "Логин" },
+  { to: "/sign-up", name: "Регистрация" },
 ]
 
 export function Menu() {
-  const classes = useStyles()
-
   return (
-    <List className={classes.root}>
+    <ul className={styles.menu}>
       {menu.map((item) => (
-        <div key={item.name}>
-          <Link to={item.to}>
-            <ListItem button={true} divider={true}>
-              <ListItemAvatar>
-                <Avatar>
-                  <WorkIcon />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText primary={item.name} />
-            </ListItem>
-          </Link>
-        </div>
+        <li key={item.name}>
+          <Link to={item.to}>{item.name}</Link>
+        </li>
       ))}
-    </List>
+    </ul>
   )
 }

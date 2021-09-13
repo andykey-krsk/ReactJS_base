@@ -16,10 +16,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
+const selector = (state) => {
+  return state.conversations.conversations
+}
+
 export function ChatList() {
   const classes = useStyles()
   const { roomId } = useParams()
-  const { conversations } = useSelector((state) => state.conversations)
+  const conversations = useSelector(selector)
 
   return (
     <div className={classes.root}>

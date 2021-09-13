@@ -1,7 +1,7 @@
 import classNames from "classnames"
 import styles from "./Message.module.scss"
 
-export function Message({ author, message, date }) {
+export function Message({ author, message }) {
   return (
     <div
       className={classNames(styles.message, {
@@ -11,7 +11,7 @@ export function Message({ author, message, date }) {
       <div className={styles.text}>
         <span>{author}: </span>
         <p>{message}</p>
-        <p className={styles.time}>{date.toLocaleTimeString().slice(0, -3)}</p>
+        <p className={styles.time}>00.00</p>
       </div>
     </div>
   )
