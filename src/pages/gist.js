@@ -33,6 +33,10 @@ import { getGists, searchGistsByUserName } from "../store/gists"
 //   return { gists, penging, error, getGists }
 // }
 
+const searchGistDebounced = debounce((query, dispatch) => {
+  dispatch(searchGistsByUserName(query))
+}, 500)
+
 export function Gist() {
   // const { gists, penging, error, getGists } = useGists()
   const ref = useRef()
