@@ -28,14 +28,14 @@ function ChatView({ title, selected, handleListItemClick }) {
         <ListItemAvatar>
           <Avatar alt={title} />
         </ListItemAvatar>
-        <ListItemText
-          primary={title}
-          secondary={
-            (lastMessage &&
-              `${lastMessage?.author}: ${lastMessage?.message}`) ||
-            "-"
-          }
-        />
+        <ListItemText className="text" primary={title} />
+        {(lastMessage && (
+          <ListItemText
+            className="text"
+            primary={`${lastMessage?.author}: ${lastMessage?.message}`}
+          />
+        )) ||
+          "-"}
         <div className="chat-col">
           <div>
             <Badge

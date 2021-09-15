@@ -4,7 +4,7 @@ import storage from "redux-persist/lib/storage"
 import thunk from "redux-thunk"
 import { updateConversation, getConversationsApi } from "../api/conversations"
 import { getGistsApi, searchGistsByUserNameApi } from "../api/gists"
-import { sendMessageApi, getMessaagesApi } from "../api/messages"
+import { sendMessageApi, getMessagesApi } from "../api/messages"
 import { conversationsReducer } from "./conversations"
 import { gistsReducer } from "./gists"
 import { messagesReducer } from "./messages"
@@ -18,15 +18,14 @@ const persistConfig = {
   whitelist: ["profile"],
 }
 
-const persistreducer = persistReducer(
-  persistConfig,
-  combineReducers({
-    profile: profileReducer,
-    conversations: conversationsReducer,
-    messages: messagesReducer,
-    gists: gistsReducer,
-  })
-)
+export const reducer = combineReducers({
+  profile: profileReducer,
+  conversations: conversationsReducer,
+  messages: messagesReducer,
+  gists: gistsReducer,
+})
+
+const persistreducer = persistReducer(persistConfig, reducer)
 
 export const store = createStore(
   persistreducer,
@@ -37,7 +36,7 @@ export const store = createStore(
         getGistsApi,
         searchGistsByUserNameApi,
         sendMessageApi,
-        getMessaagesApi,
+        getMessagesApi,
         updateConversation,
         getConversationsApi,
       }),
